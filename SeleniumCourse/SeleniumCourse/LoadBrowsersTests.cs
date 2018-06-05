@@ -2,12 +2,14 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Support.UI;
 
 namespace SeleniumCourse
 {
     [TestFixture]
-    class LoginPageTest
+    public class LoadBrowsersTests
     {
         private IWebDriver driver;
         private WebDriverWait wait;
@@ -15,25 +17,32 @@ namespace SeleniumCourse
         [SetUp]
         public void start()
         {
-            driver = new ChromeDriver();
+            //firefox with geckodriver
+            /*    FirefoxOptions options = new FirefoxOptions();
+                options.UseLegacyImplementation = false;
+                driver = new FirefoxDriver(options);*/
+            FirefoxOptions options = new FirefoxOptions();
+            options.UseLegacyImplementation = false;
+            options.BrowserExecutableLocation = @"c:\Program Files\Firefox Nightly\firefox.exe";
+            driver = new FirefoxDriver(options);
+            // chrome
+            //    driver = new ChromeDriver();
+            //IE
+            /*    InternetExplorerOptions options = new InternetExplorerOptions();
+            options.RequireWindowFocus = true;
+            driver = new InternetExplorerDriver(options);*/
+
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
 
         [Test]
-        public void TestLogin()
+        public void Test()
         {
             driver.Url = "http://localhost:8080/litecart/admin/";
             driver.FindElement(By.Name("username")).SendKeys("admin");
             driver.FindElement(By.Name("password")).SendKeys("admin");
             driver.FindElement(By.Name("remember_me")).Click();
             driver.FindElement(By.Name("login")).Click();
-        }
-
-        [Test]
-        public void TestHrefToShop()
-        {
-            driver.Url = "http://localhost:8080/litecart/admin/";
-            driver.FindElement(By.ClassName("header")).Click();
         }
 
         [TearDown]

@@ -59,7 +59,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClickingAllPoints.cs" />
     <Compile Include="FirstTest.cs" />
+    <Compile Include="LoadBrowsers.cs" />
     <Compile Include="LoginPageTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

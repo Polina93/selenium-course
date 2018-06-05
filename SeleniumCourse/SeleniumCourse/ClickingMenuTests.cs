@@ -7,7 +7,7 @@ using OpenQA.Selenium.Support.UI;
 namespace SeleniumCourse
 {
     [TestFixture]
-    class LoginPageTest
+    public class ClickingMenuTests
     {
         private IWebDriver driver;
         private WebDriverWait wait;
@@ -20,22 +20,29 @@ namespace SeleniumCourse
         }
 
         [Test]
-        public void TestLogin()
+        public void ClickAllItemsOfMenu_Test()
         {
             driver.Url = "http://localhost:8080/litecart/admin/";
             driver.FindElement(By.Name("username")).SendKeys("admin");
             driver.FindElement(By.Name("password")).SendKeys("admin");
-            driver.FindElement(By.Name("remember_me")).Click();
             driver.FindElement(By.Name("login")).Click();
-        }
 
-        [Test]
-        public void TestHrefToShop()
-        {
-            driver.Url = "http://localhost:8080/litecart/admin/";
-            driver.FindElement(By.ClassName("header")).Click();
+            var menu = driver.FindElements(By.Id("app-"));
+            for (var i = 0; i < menu.Count; i++)
+            {
+                menu[i].Click();
+                var submenu = driver.FindElements(By.ClassName("docs"));
+                if (submenu.Count==0)
+                    Assert.AreEqual(driver.FindElement(By.CssSelector("#content > h1")).Displayed, true);
+                foreach (var item in submenu)
+                {
+                    item.Click();
+                    Assert.AreEqual(driver.FindElement(By.CssSelector("#content > h1")).Displayed, true);
+                }
+                menu = driver.FindElements(By.Id("app-"));
+            }
         }
-
+        
         [TearDown]
         public void stop()
         {
