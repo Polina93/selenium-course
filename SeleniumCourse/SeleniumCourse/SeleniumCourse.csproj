@@ -59,11 +59,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClickingAllPoints.cs" />
+    <Compile Include="ClickingMenuTests.cs" />
     <Compile Include="FirstTest.cs" />
-    <Compile Include="LoadBrowsers.cs" />
+    <Compile Include="LoadBrowsersTests.cs" />
     <Compile Include="LoginPageTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StickersTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
