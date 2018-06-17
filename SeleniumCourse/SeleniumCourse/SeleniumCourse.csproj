@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CampaignsTests.cs" />
     <Compile Include="ClickingMenuTests.cs" />
     <Compile Include="FirstTest.cs" />
     <Compile Include="LoadBrowsersTests.cs" />
