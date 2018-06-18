@@ -34,6 +34,7 @@ namespace SeleniumCourse
             options.RequireWindowFocus = true;
             driver = new InternetExplorerDriver(options);
             */
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
 
@@ -78,8 +79,7 @@ namespace SeleniumCourse
             {
                 var productOnMain = campaignsItems[i];
                 productOnMain.FindElement(By.CssSelector("a.link")).Click();
-                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-
+                
                 var product = driver.FindElement(By.CssSelector("div#box-product"));
                 var productInfo = product.FindElement(By.CssSelector("div.information"));
                 var regPrice = productInfo.FindElement(By.CssSelector(".price-wrapper>.regular-price"));
@@ -123,7 +123,6 @@ namespace SeleniumCourse
                 var camPriceOnMain = productOnMain.FindElement(By.CssSelector(".price-wrapper>.campaign-price")).Text;
                 
                 productOnMain.FindElement(By.CssSelector("a.link")).Click();
-                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
                 var product = driver.FindElement(By.CssSelector("div#box-product"));
                 var name = product.FindElement(By.CssSelector(".title")).Text;
